@@ -27,7 +27,7 @@ function UsersPage() {
                 <div>
                   <img src={user.profilePicture} alt="" width={100} />
                 </div>
-                {user.userName ? <>{user.userName}</> : <>{user.email}</>}
+                {user.userName ? <p>{user.userName}</p> : <p>{user.email}</p>}
               </Link>
             </div>
           );

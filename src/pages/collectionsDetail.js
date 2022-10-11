@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { api } from "../api/api";
 import HandleEditCollection from "../components/HandleEditCollection/handleEditCollection";
 import { AuthContext } from "../contexts/authContext";
@@ -86,14 +86,31 @@ function CollectionsDetail() {
     }
   }
 
-  function handlePhotoClick(photo) {
-    if (photo.likes.includes(loggedUser.user._id)) {
-      handleRemoveLikePhoto(photo._id);
-      return;
-    }
+  // async function handleAddlikeCollection(collId) {
+  //   try {
+  //     await api.put(`/collections/add-like/${collId}`);
+  //     setReload(!reload);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
-    handleAddLikePhoto(photo._id);
-  }
+  // function handleCollectionClick(coll) {
+  //   if (coll.likes.includes(loggedUser.user._id)) {
+  //     handleRemoveLikeCollection(coll._id);
+  //     return;
+  //   }
+  //   handleAddlikeCollection(coll._id);
+  // }
+
+  // async function handleRemoveLikeCollection(collId) {
+  //   try {
+  //     await api.put(`/collections/remove-collection/${collId}`);
+  //     setReload(!reload);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   async function handleAddLikePhoto(photoId) {
     try {
@@ -102,6 +119,15 @@ function CollectionsDetail() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function handlePhotoClick(photo) {
+    if (photo.likes.includes(loggedUser.user._id)) {
+      handleRemoveLikePhoto(photo._id);
+      return;
+    }
+
+    handleAddLikePhoto(photo._id);
   }
 
   async function handleRemoveLikePhoto(photoId) {
@@ -113,18 +139,26 @@ function CollectionsDetail() {
     }
   }
 
+  console.log(coll);
   return (
     <div>
       {!isLoading && (
         <div>
           <h1>{coll.collectionName}</h1>
-          <button
+          {/* <button
             onClick={() => {
-              navigate("/profile");
+              handleCollectionClick(coll);
             }}
-          >
-            Back
-          </button>
+          ></button> */}
+          {loggedUser.user._id !== coll.author._id ? (
+            <Link to={`/users/${coll.author._id}`}>
+              <button type="button">Back</button>
+            </Link>
+          ) : (
+            <button type="button" onClick={() => navigate("/profile")}>
+              Back
+            </button>
+          )}
           {coll.author._id === loggedUser.user._id && (
             <HandleEditCollection
               collectionId={collectionId}

@@ -70,24 +70,43 @@ function UsersDetailPage() {
       {!isLoading && (
         <>
           <div>
-            <img srsc={user.profilePicture} alt="" width={100} />
+            <img src={user.profilePicture} alt="" width={200} />
           </div>
-          {user.name ? <p>{user.name}</p> : <p>{user.email}</p>}
-          {user.userName ? <p>@{user.userName}</p> : null}
-          {loggedUser.user._id == user._id ? null : (
-            <button onClick={() => handleFollowing()}>
-              {following() ? "Unfollow" : "Follow"}
-            </button>
-          )}
-          <Link to={`/users/followers/${user._id}`}>Followers</Link>
-          <Link to={`/users/following/${user._id}`}>Following</Link>
+          <div>
+            {user.name ? <p>{user.name}</p> : <p>{user.email}</p>}
+            {user.userName ? <p>@{user.userName}</p> : null}
+            {loggedUser.user._id == user._id ? null : (
+              <button onClick={() => handleFollowing()}>
+                {following() ? "Unfollow" : "Follow"}
+              </button>
+            )}
+            <div>
+              <Link to={`/users/followers/${user._id}`}>Followers</Link>
+            </div>
+            <div>
+              <Link to={`/users/following/${user._id}`}>Following</Link>
+            </div>
+          </div>
           {user.collections.map((coll) => {
-            console.log(coll);
+            console.log("e eu?", coll);
             return (
-              <Link to={`/collection-detail/${coll._id}`} key={uuidv4()}>
-                <p>Collection Name: {coll.collectionName}</p>
+              <div key={uuidv4()}>
+                <Link to={`/collection-detail/${coll._id}`}>
+                  <p>Collection Name: {coll.collectionName}</p>
+                </Link>
                 <p>Collection Detail: {coll.collectionDetails}</p>
-              </Link>
+                {coll.photos.map((photo) => {
+                  return (
+                    <div key={uuidv4()}>
+                      <img
+                        src={photo.photoUrl}
+                        alt="randomImages"
+                        width={100}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             );
           })}
         </>

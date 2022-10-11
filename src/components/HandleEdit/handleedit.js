@@ -41,6 +41,13 @@ function HandleEdit({ user, reload, setReload, setToggleEdit, toggleEdit }) {
           onChange={handleChange}
         />
         <button type="submit">Save</button>
+        <button
+          onClick={() => {
+            setToggleEdit(!toggleEdit);
+          }}
+        >
+          Cancel
+        </button>
         <HandleDelete />
       </form>
     </div>
