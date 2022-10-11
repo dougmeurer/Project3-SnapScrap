@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../api/api";
 import HandleEditCollection from "../components/HandleEditCollection/handleEditCollection";
 import { AuthContext } from "../contexts/authContext";
+import unliked from "../../src/assets/unliked.png";
+import liked from "../../src/assets/liked.png";
 
 function CollectionsDetail() {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,9 +55,7 @@ function CollectionsDetail() {
       const uploadData = new FormData();
       uploadData.append("picture", img);
 
-      console.log(uploadData);
       const response = await api.post("/upload-image", uploadData);
-      console.log(response);
 
       return response.data.url;
     } catch (error) {
@@ -70,6 +70,8 @@ function CollectionsDetail() {
 
       await api.post(`/photos/create/${collectionId}`, { photoUrl: imgURL });
       setReload(!reload);
+      setTogglePhoto(!togglePhoto);
+      setImg(null);
     } catch (error) {
       console.log(error);
     }
@@ -78,6 +80,33 @@ function CollectionsDetail() {
   async function handleDeletePhoto(photo) {
     try {
       await api.delete(`/photos/delete/${photo}`);
+      setReload(!reload);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function handlePhotoClick(photo) {
+    if (photo.likes.includes(loggedUser.user._id)) {
+      handleRemoveLikePhoto(photo._id);
+      return;
+    }
+
+    handleAddLikePhoto(photo._id);
+  }
+
+  async function handleAddLikePhoto(photoId) {
+    try {
+      await api.put(`/photos/add-like/${photoId}`);
+      setReload(!reload);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleRemoveLikePhoto(photoId) {
+    try {
+      await api.put(`/photos/remove-like/${photoId}`);
       setReload(!reload);
     } catch (error) {
       console.log(error);
@@ -110,14 +139,7 @@ function CollectionsDetail() {
                 <form onSubmit={handleSubmit}>
                   <input type="file" onChange={handleImage} />
                   {img && <img src={preview} alt="Avatar" width={200} />}
-                  <button
-                    type="submit"
-                    onClick={() => {
-                      setTogglePhoto(!togglePhoto);
-                    }}
-                  >
-                    Enter
-                  </button>
+                  <button type="submit">Enter</button>
                   <button
                     onClick={() => {
                       setTogglePhoto(!togglePhoto);
@@ -145,6 +167,19 @@ function CollectionsDetail() {
               return (
                 <div key={photo._id} className="btnDivShow">
                   <img src={photo.photoUrl} alt="Avatar" width={300} />
+                  <div>
+                    <img
+                      src={
+                        photo.likes.includes(loggedUser.user._id)
+                          ? liked
+                          : unliked
+                      }
+                      onClick={() => handlePhotoClick(photo)}
+                      width={25}
+                      alt=""
+                      className="btnHidden"
+                    />
+                  </div>
                   {coll.author._id === loggedUser.user._id && (
                     <button
                       className="btnHidden"

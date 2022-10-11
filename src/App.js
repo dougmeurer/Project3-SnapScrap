@@ -9,6 +9,8 @@ import SnapNavbar from "./components/SnapNavbar/navbar";
 import UsersDetailPage from "./pages/usersDetail";
 import CollectionsDetail from "./pages/collectionsDetail";
 import UsersPage from "./pages/usersPage";
+import FollowersPage from "./pages/followersPage";
+import FollowingPage from "./pages/followingPage";
 
 function App() {
   return (
@@ -26,7 +28,10 @@ function App() {
             path="/collection-detail/:collectionId"
             element={<CollectionsDetail />}
           />
-          {/* <Route path="/collection/:collectionId" element={}/> */}
+          <Route path="/users/followers" element={<FollowersPage />} />
+          <Route path="/users/followers/:userId" element={<FollowersPage />} />
+          <Route path="/users/following" element={<FollowingPage />} />
+          <Route path="/users/following/:userId" element={<FollowingPage />} />
         </Routes>
       </AuthContextComponent>
     </div>

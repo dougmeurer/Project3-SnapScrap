@@ -28,9 +28,17 @@ function SnapNavbar() {
       <button
         onClick={() => {
           navigate("/profile");
-        }}
+        }}  
       >
         Profile
+      </button>
+
+      <button
+        onClick={() => {
+          navigate("/allCollections");
+        }}
+      >
+        All Collections - not set yet
       </button>
     </>
   );
