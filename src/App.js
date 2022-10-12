@@ -11,6 +11,7 @@ import CollectionsDetail from "./pages/collectionsDetail";
 import UsersPage from "./pages/usersPage";
 import FollowersPage from "./pages/followersPage";
 import FollowingPage from "./pages/followingPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
