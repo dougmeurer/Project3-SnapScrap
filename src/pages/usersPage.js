@@ -27,9 +27,9 @@ function UsersPage() {
             return null;
           }
           return (
-            <div key={user._id}>
-              <Link to={`/users/${user._id}`}>
-                <div>
+            <>
+              <div key={user._id} className="profileFlex clearfix ">
+                <Link to={`/users/${user._id}`}>
                   <img
                     src={user.profilePicture}
                     alt=""
@@ -39,13 +39,21 @@ function UsersPage() {
                       borderRadius: 20,
                     }}
                   />
+                </Link>
+                <div className="profileFlex mx-1 my-1">
+                  {user.userName ? (
+                    <h4 className="userNames">{user.userName}</h4>
+                  ) : (
+                    <h4 className="userNames">{user.email}</h4>
+                  )}
+                  <p className="userNames">
+                    Collections {user.collections.length}
+                  </p>
+                  <p className="userNames">Followers {user.followers.length}</p>
+                  <p className="userNames">Following {user.following.length}</p>
                 </div>
-              </Link>
-              {user.userName ? <p>{user.userName}</p> : <p>{user.email}</p>}
-              <p>Collections {user.collections.length}</p>
-              <p>Followers {user.followers.length}</p>
-              <p>Following {user.following.length}</p>
-            </div>
+              </div>
+            </>
           );
         })}
     </div>

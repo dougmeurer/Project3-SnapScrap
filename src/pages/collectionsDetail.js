@@ -200,7 +200,7 @@ function CollectionsDetail() {
                   <>
                     {!togglePhoto ? (
                       <Form onSubmit={handleSubmit}>
-                        <input type="file" onChange={handleImage} />
+                        <Form.Control type="file" onChange={handleImage} />
                         {img && (
                           <Image
                             src={preview}
@@ -211,7 +211,6 @@ function CollectionsDetail() {
                               borderRadius: 10,
                               width: 200,
                               height: "auto",
-                          
                             }}
                           />
                         )}
@@ -252,45 +251,49 @@ function CollectionsDetail() {
             </Card.Body>
           </Card.Header>
 
-          <div className="card">
+          <div className="card3">
             {coll.photos.map((photo) => {
               return (
                 <div key={photo._id} className="btnDivShow my-1">
-                  <Image
-                    src={photo.photoUrl}
-                    alt="Avatar"
-                    className="mx-auto"
-                    style={{
-                      padding: 5,
-                      borderRadius: 10,
-                      width: 600,
-                    }}
-                  />
-                  {coll.author._id !== loggedUser.user._id && (
-                    <div>
-                      <img
-                        src={
-                          photo.likes.includes(loggedUser.user._id)
-                            ? liked
-                            : unliked
-                        }
-                        onClick={() => handlePhotoClick(photo)}
-                        width={25}
-                        alt=""
-                        className="btnHidden"
-                      />
-                    </div>
-                  )}
-                  {coll.author._id === loggedUser.user._id && (
-                    <Button
-                      className="btnHidden"
-                      variant="btn btn-outline-danger btn-sm mx-1"
-                      onClick={() => handleDeletePhoto(photo._id)}
-                      type="button"
-                    >
-                      delete
-                    </Button>
-                  )}
+                  <Card className="d-flex justify-content-between flex-wrap">
+                    <Image
+                      src={photo.photoUrl}
+                      alt="Avatar"
+                      className="mx-auto"
+                      style={{
+                        padding: 5,
+                        borderRadius: 10,
+                        width: 600,
+                      }}
+                    />
+                    {coll.author._id !== loggedUser.user._id && (
+                      <div>
+                        <img
+                          src={
+                            photo.likes.includes(loggedUser.user._id)
+                              ? liked
+                              : unliked
+                          }
+                          onClick={() => handlePhotoClick(photo)}
+                          width={25}
+                          alt=""
+                          className="btnHidden"
+                        />
+                      </div>
+                    )}
+                    {coll.author._id === loggedUser.user._id && (
+                      <div>
+                        <Button
+                          className="btnHidden"
+                          variant="btn btn-outline-danger btn-sm mx-1"
+                          onClick={() => handleDeletePhoto(photo._id)}
+                          type="button"
+                        >
+                          delete
+                        </Button>
+                      </div>
+                    )}
+                  </Card>
                 </div>
               );
             })}

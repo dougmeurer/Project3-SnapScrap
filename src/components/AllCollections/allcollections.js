@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
-import styles from "./styles.module.css";
 import Card from "react-bootstrap/Card";
 import { AuthContext } from "../../contexts/authContext";
 
@@ -27,7 +26,7 @@ function AllCollections() {
   }, []);
 
   return (
-    <div className="collections">
+    <div className="card2">
       {!isLoading &&
         coll.map((oneColl) => {
           if (userId === oneColl.author) {
@@ -35,18 +34,21 @@ function AllCollections() {
           }
           return (
             <Card
-              className={styles.card}
               key={oneColl._id}
               onClick={() => {
                 navigate(`/collection-detail/${oneColl._id}`);
               }}
             >
-              <div className={styles.container}>
+              <Card.Header>
                 <Card.Title className="colName">
                   {oneColl.collectionName}
                 </Card.Title>
 
-                <Card.Text>{oneColl.collectionDetails}</Card.Text>
+                <Card.Text className="subs">
+                  {oneColl.collectionDetails}
+                </Card.Text>
+              </Card.Header>
+              <Card.Body>
                 {oneColl.photos.map((photo) => {
                   return (
                     <Card.Img
@@ -57,12 +59,12 @@ function AllCollections() {
                         padding: 5,
                         borderRadius: 10,
                         width: 150,
-                        height: 140,
+                        height: "auto",
                       }}
                     />
                   );
                 })}
-              </div>
+              </Card.Body>
             </Card>
           );
         })}

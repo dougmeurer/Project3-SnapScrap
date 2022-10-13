@@ -31,17 +31,6 @@ function HandleEditCollection({ reload, setReload, collectionId }) {
       <>
         {!formToggle ? (
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="my-1">
-              <Form.Label htmlFor="collectionName">
-                Collection name:{" "}
-              </Form.Label>
-              <Form.Control
-                id="collectionName"
-                name="collectionName"
-                value={editColl.collectionName}
-                onChange={handleChange}
-              />
-            </Form.Group>
             <Form.Group className="mb-1">
               <Form.Label htmlFor="collectionName">
                 Collection name:{" "}
@@ -72,7 +61,7 @@ function HandleEditCollection({ reload, setReload, collectionId }) {
               </Button>
               <Button
                 variant="btn btn-outline-dark btn-sm my-1"
-                className="btnContent"  
+                className="btnContent"
                 onClick={() => {
                   setFormToggle(!formToggle);
                 }}

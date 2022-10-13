@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 import styles from "./styles.module.css";
 import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
 
 function MyCollection({ reload }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,27 +38,35 @@ function MyCollection({ reload }) {
                 }}
               >
                 <div className={styles.container}>
-                  <Card.Title className="colName">
-                    {oneColl.collectionName}
-                  </Card.Title>
+                  <Card.Header>
+                    <Card.Title className="colName">
+                      {oneColl.collectionName}
+                    </Card.Title>
 
-                  <Card.Text>{oneColl.collectionDetails}</Card.Text>
-                  {oneColl.photos.map((photo) => {
-                    return (
-                      <Card.Img
-                        key={photo._id}
-                        src={photo.photoUrl}
-                        alt="Avatar"
-                        style={{
-                          padding: 5,
-                          borderRadius: 10,
-                          width: 230,
-                          height: "auto",
-                          justifyContent: "center"
-                        }}
-                      />
-                    );
-                  })}
+                    <Card.Text className="subs">
+                      {oneColl.collectionDetails}
+                    </Card.Text>
+                  </Card.Header>
+                  <Card.Body className="d-flex justify-content-around flex-wrap">
+                    {oneColl.photos.map((photo) => {
+                      return (
+                        <Image
+                          key={photo._id}
+                          src={photo.photoUrl}
+                          alt="Avatar"
+                          className="d-flex"
+                          fluid
+                          style={{
+                            padding: 5,
+                            borderRadius: 10,
+                            width: 230,
+                            height: 215,
+                            justifyContent: "center",
+                          }}
+                        />
+                      );
+                    })}
+                  </Card.Body>
                 </div>
               </Card>
             );

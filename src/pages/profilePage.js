@@ -56,9 +56,7 @@ export function ProfilePage() {
             </h1>
             {user.userName ? (
               <p className="userNames">@{user.userName}</p>
-            ) : (
-              <></>
-            )}
+            ) : null}
 
             <Button
               variant="btn btn-outline-dark btn-sm my-1"
