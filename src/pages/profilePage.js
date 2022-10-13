@@ -102,7 +102,7 @@ export function ProfilePage() {
               Followers
             </Button>
             <Button
-              variant="btn btn-outline-dark btn-sm"
+              variant="btn btn-outline-dark btn-sm mb-1"
               className="btnContent"
               onClick={() => {
                 navigate("/users/following");

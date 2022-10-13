@@ -56,7 +56,7 @@ function UsersDetailPage() {
 
   function following() {
     const isFound = user.followers.some((element) => {
-      if (element._id == loggedUser.user._id) {
+      if (element._id === loggedUser.user._id) {
         return true;
       }
 
@@ -83,7 +83,7 @@ function UsersDetailPage() {
           <div>
             {user.name ? <p>{user.name}</p> : <p>{user.email}</p>}
             {user.userName ? <p>@{user.userName}</p> : null}
-            {loggedUser.user._id == user._id ? null : (
+            {loggedUser.user._id === user._id ? null : (
               <button onClick={() => handleFollowing()}>
                 {following() ? "Unfollow" : "Follow"}
               </button>

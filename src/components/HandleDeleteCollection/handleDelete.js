@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
+import Button from "react-bootstrap/Button";
 
 function HandleDeleteCollection({ collectionId }) {
   const navigate = useNavigate();
@@ -15,9 +16,13 @@ function HandleDeleteCollection({ collectionId }) {
 
   return (
     <>
-      <button onClick={handleDelete} type="button">
+      <Button
+        onClick={handleDelete}
+        type="button"
+        variant="btn btn-outline-danger btn-sm mx-1"
+      >
         Delete Collection
-      </button>
+      </Button>
     </>
   );
 }

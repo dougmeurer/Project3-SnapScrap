@@ -25,41 +25,44 @@ function MyCollection({ reload }) {
 
   return (
     <div className="collections">
-      {!isLoading &&
-        coll.map((oneColl) => {
-          return (
-            <Card
-              className={styles.card}
-              key={oneColl._id}
-              onClick={() => {
-                navigate(`/collection-detail/${oneColl._id}`);
-              }}
-            >
-              <div className={styles.container}>
-                <Card.Title className="colName">
-                  {oneColl.collectionName}
-                </Card.Title>
+      <Card>
+        {!isLoading &&
+          coll.map((oneColl) => {
+            return (
+              <Card
+                className={styles.card}
+                key={oneColl._id}
+                onClick={() => {
+                  navigate(`/collection-detail/${oneColl._id}`);
+                }}
+              >
+                <div className={styles.container}>
+                  <Card.Title className="colName">
+                    {oneColl.collectionName}
+                  </Card.Title>
 
-                <Card.Text>{oneColl.collectionDetails}</Card.Text>
-                {oneColl.photos.map((photo) => {
-                  return (
-                    <Card.Img
-                      key={photo._id}
-                      src={photo.photoUrl}
-                      alt="Avatar"
-                      style={{
-                        padding: 5,
-                        borderRadius: 10,
-                        width: 150,
-                        height: 140,
-                      }}
-                    />
-                  );
-                })}
-              </div>
-            </Card>
-          );
-        })}
+                  <Card.Text>{oneColl.collectionDetails}</Card.Text>
+                  {oneColl.photos.map((photo) => {
+                    return (
+                      <Card.Img
+                        key={photo._id}
+                        src={photo.photoUrl}
+                        alt="Avatar"
+                        style={{
+                          padding: 5,
+                          borderRadius: 10,
+                          width: 230,
+                          height: "auto",
+                          justifyContent: "center"
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              </Card>
+            );
+          })}
+      </Card>
     </div>
   );
 }

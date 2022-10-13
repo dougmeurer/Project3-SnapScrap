@@ -119,7 +119,8 @@ function CreateCollection({
             Enter
           </Button>
           <Button
-            variant="btn btn-outline-danger btn-sm my-1"
+            variant="btn btn-outline-dark btn-sm my-1 mx-1"
+            className="btnContent"
             onClick={() => {
               setToggleCollection(!toggleCollection);
             }}

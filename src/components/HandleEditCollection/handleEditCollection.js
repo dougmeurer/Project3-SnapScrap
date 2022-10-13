@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { api } from "../../api/api";
 import HandleDeleteCollection from "../HandleDeleteCollection/handleDelete";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function HandleEditCollection({ reload, setReload, collectionId }) {
   const [editColl, setEditColl] = useState({
@@ -28,43 +30,70 @@ function HandleEditCollection({ reload, setReload, collectionId }) {
     <div>
       <>
         {!formToggle ? (
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="collectionName">Collection name: </label>
-            <input
-              id="collectionName"
-              name="collectionName"
-              value={editColl.collectionName}
-              onChange={handleChange}
-            />
-
-            <label htmlFor="collectionDetails">Details: </label>
-            <input
-              id="collectionDetails"
-              name="collectionDetails"
-              required
-              value={editColl.collectionDetails}
-              onChange={handleChange}
-            />
-            <button type="submit">Save</button>
-            <button
-              onClick={() => {
-                setFormToggle(!formToggle);
-              }}
-              type="button"
-            >
-              Cancel
-            </button>
-          </form>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="my-1">
+              <Form.Label htmlFor="collectionName">
+                Collection name:{" "}
+              </Form.Label>
+              <Form.Control
+                id="collectionName"
+                name="collectionName"
+                value={editColl.collectionName}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-1">
+              <Form.Label htmlFor="collectionName">
+                Collection name:{" "}
+              </Form.Label>
+              <Form.Control
+                id="collectionName"
+                name="collectionName"
+                value={editColl.collectionName}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="my-1">
+              <Form.Label htmlFor="collectionDetails">Details: </Form.Label>
+              <Form.Control
+                id="collectionDetails"
+                name="collectionDetails"
+                required
+                value={editColl.collectionDetails}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="my-1">
+              <Button
+                type="submit"
+                variant="btn btn-outline-success btn-sm my-1 mx-1"
+              >
+                Save
+              </Button>
+              <Button
+                variant="btn btn-outline-dark btn-sm my-1"
+                className="btnContent"  
+                onClick={() => {
+                  setFormToggle(!formToggle);
+                }}
+                type="button"
+              >
+                Cancel
+              </Button>
+            </Form.Group>
+          </Form>
         ) : (
           <>
-            <button
+            <Button
+              variant="btn btn-outline-dark btn-sm my-1"
+              className="btnContent"
               onClick={() => {
                 setFormToggle(!formToggle);
               }}
               type="button"
             >
               Edit Collection
-            </button>
+            </Button>
           </>
         )}
         <HandleDeleteCollection collectionId={collectionId} />

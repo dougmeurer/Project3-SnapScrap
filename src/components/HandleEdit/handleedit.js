@@ -76,28 +76,26 @@ function HandleEdit({
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Group className="mb-3">
           <Form.Label htmlFor="name">Name: </Form.Label>
           <Form.Control
-            id="name"
             name="name"
             value={editUser.name}
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicUserName">
+        <Form.Group className="mb-3">
           <Form.Label htmlFor="userName">User Name: </Form.Label>
           <Form.Control
-            id="userName"
             name="userName"
             value={editUser.userName}
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPhoto">
-          <Form.Control id="photo" type="file" onChange={handleImage} />
+        <Form.Group className="mb-3">
+          <Form.Control type="file" onChange={handleImage} />
 
-          <Form.Group className="my-2" controlId="formBasicPhoto">
+          <Form.Group className="my-2">
             {img && (
               <img
                 src={preview}
@@ -111,7 +109,10 @@ function HandleEdit({
             )}
           </Form.Group>
         </Form.Group>
-        <Button type="submit" variant="btn btn-outline-success btn-sm my-2">
+        <Button
+          type="submit"
+          variant="btn btn-outline-success btn-sm my-2 mx-1"
+        >
           Save
         </Button>
         <HandleDelete />

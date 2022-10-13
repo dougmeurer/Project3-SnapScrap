@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api/api";
+import { AuthContext } from "../contexts/authContext";
 
 function UsersPage() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { loggedUser } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchUser() {
@@ -21,6 +23,9 @@ function UsersPage() {
     <div>
       {!isLoading &&
         users.map((user) => {
+          if (loggedUser.user._id === user._id) {
+            return null;
+          }
           return (
             <div key={user._id}>
               <Link to={`/users/${user._id}`}>
@@ -37,6 +42,9 @@ function UsersPage() {
                 </div>
               </Link>
               {user.userName ? <p>{user.userName}</p> : <p>{user.email}</p>}
+              <p>Collections {user.collections.length}</p>
+              <p>Followers {user.followers.length}</p>
+              <p>Following {user.following.length}</p>
             </div>
           );
         })}

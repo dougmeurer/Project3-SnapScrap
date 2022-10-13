@@ -6,8 +6,9 @@ import { AuthContext } from "../contexts/authContext";
 import unliked from "../../src/assets/unliked.png";
 import liked from "../../src/assets/liked.png";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
 
 function CollectionsDetail() {
   const [isLoading, setIsLoading] = useState(true);
@@ -142,68 +143,129 @@ function CollectionsDetail() {
     }
   }
 
-  console.log(coll);
+  console.log("aqui", coll);
   return (
-    <div>
+    <Card>
       {!isLoading && (
         <div className="container">
-          <h1>{coll.collectionName}</h1>
-          {/* <button
+          <Card.Header>
+            <Card>
+              <Card.Title className="colName2">
+                {coll.collectionName}
+              </Card.Title>
+              <Card.Text>{coll.collectionDetails}</Card.Text>
+              <p>{coll.photos.length} photos total</p>
+            </Card>
+
+            {/* <button
             onClick={() => {
               handleCollectionClick(coll);
             }}
           ></button> */}
-          {loggedUser.user._id !== coll.author._id ? (
-            <Link to={`/users/${coll.author._id}`}>
-              <button type="button">Back</button>
-            </Link>
-          ) : (
-            <button type="button" onClick={() => navigate("/profile")}>
-              Back
-            </button>
-          )}
-          {coll.author._id === loggedUser.user._id && (
-            <HandleEditCollection
-              collectionId={collectionId}
-              reload={reload}
-              setReload={setReload}
-            />
-          )}
+            <Card.Body>
+              <div className="adjustButton">
+                {loggedUser.user._id !== coll.author._id ? (
+                  <div>
+                    <Link to={`/users/${coll.author._id}`}>
+                      <Button
+                        type="button"
+                        variant="btn btn-outline-dark btn-sm my-1"
+                        className="btnContent"
+                      >
+                        Back
+                      </Button>
+                    </Link>
+                  </div>
+                ) : (
+                  <div>
+                    <Button
+                      type="button"
+                      variant="btn btn-outline-dark btn-sm my-1"
+                      className="btnContent"
+                      onClick={() => navigate("/profile")}
+                    >
+                      Back
+                    </Button>
+                  </div>
+                )}
+                {coll.author._id === loggedUser.user._id && (
+                  <HandleEditCollection
+                    collectionId={collectionId}
+                    reload={reload}
+                    setReload={setReload}
+                  />
+                )}
 
-          {coll.author._id === loggedUser.user._id && (
-            <>
-              {!togglePhoto ? (
-                <form onSubmit={handleSubmit}>
-                  <input type="file" onChange={handleImage} />
-                  {img && <img src={preview} alt="Avatar" width={200} />}
-                  <button type="submit">Enter</button>
-                  <button
-                    onClick={() => {
-                      setTogglePhoto(!togglePhoto);
-                    }}
-                    type="button"
-                  >
-                    Cancel
-                  </button>
-                </form>
-              ) : (
-                <button
-                  onClick={() => {
-                    setTogglePhoto(!togglePhoto);
-                  }}
-                  type="button"
-                >
-                  Add Foto
-                </button>
-              )}
-            </>
-          )}
+                {coll.author._id === loggedUser.user._id && (
+                  <>
+                    {!togglePhoto ? (
+                      <Form onSubmit={handleSubmit}>
+                        <input type="file" onChange={handleImage} />
+                        {img && (
+                          <Image
+                            src={preview}
+                            alt="Avatar"
+                            fluid
+                            style={{
+                              padding: 5,
+                              borderRadius: 10,
+                              width: 200,
+                              height: "auto",
+                          
+                            }}
+                          />
+                        )}
+                        <Button
+                          type="submit"
+                          variant="btn btn-outline-success btn-sm my-1 mx-1"
+                        >
+                          Enter
+                        </Button>
+                        <Button
+                          variant="btn btn-outline-dark btn-sm my-1"
+                          className="btnContent"
+                          onClick={() => {
+                            setTogglePhoto(!togglePhoto);
+                          }}
+                          type="button"
+                        >
+                          Cancel
+                        </Button>
+                      </Form>
+                    ) : (
+                      <div>
+                        <Button
+                          onClick={() => {
+                            setTogglePhoto(!togglePhoto);
+                          }}
+                          type="button"
+                          className="btnContent"
+                          variant="btn btn-outline-dark btn-sm my-1"
+                        >
+                          Add Foto
+                        </Button>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            </Card.Body>
+          </Card.Header>
 
           <div className="card">
             {coll.photos.map((photo) => {
               return (
-                <div key={photo._id} className="btnDivShow">
-                  <img src={photo.photoUrl} alt="Avatar" width={300} />
+                <div key={photo._id} className="btnDivShow my-1">
+                  <Image
+                    src={photo.photoUrl}
+                    alt="Avatar"
+                    className="mx-auto"
+                    style={{
+                      padding: 5,
+                      borderRadius: 10,
+                      width: 600,
+                    }}
+                  />
                   {coll.author._id !== loggedUser.user._id && (
                     <div>
                       <img
@@ -220,13 +282,14 @@ function CollectionsDetail() {
                     </div>
                   )}
                   {coll.author._id === loggedUser.user._id && (
-                    <button
+                    <Button
                       className="btnHidden"
+                      variant="btn btn-outline-danger btn-sm mx-1"
                       onClick={() => handleDeletePhoto(photo._id)}
                       type="button"
                     >
                       delete
-                    </button>
+                    </Button>
                   )}
                 </div>
               );
@@ -234,7 +297,7 @@ function CollectionsDetail() {
           </div>
         </div>
       )}
-    </div>
+    </Card>
   );
 }
 
