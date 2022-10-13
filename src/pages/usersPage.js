@@ -25,10 +25,18 @@ function UsersPage() {
             <div key={user._id}>
               <Link to={`/users/${user._id}`}>
                 <div>
-                  <img src={user.profilePicture} alt="" width={100} />
+                  <img
+                    src={user.profilePicture}
+                    alt=""
+                    style={{
+                      height: 200,
+                      width: 190,
+                      borderRadius: 20,
+                    }}
+                  />
                 </div>
-                {user.userName ? <p>{user.userName}</p> : <p>{user.email}</p>}
               </Link>
+              {user.userName ? <p>{user.userName}</p> : <p>{user.email}</p>}
             </div>
           );
         })}

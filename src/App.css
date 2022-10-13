@@ -41,3 +41,41 @@
 .active {
   border: 2px solid rebeccapurple;
 }
+
+.navBtnContent {
+  color: rgb(9, 9, 65);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.navBtnContent:hover {
+  background-color: #a23552;
+  color: white;
+}
+
+.canvaTitle {
+  color: rgb(9, 9, 65);
+}
+
+.signBtnContent {
+  color: rgb(9, 9, 65);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.signBtnContent:hover {
+  background-color: #a23552;
+  color: white;
+}
+
+.loginLabel {
+  color: rgb(9, 9, 65);
+  font-weight: 400;
+  font-size: larger;
+  font-style: italic;
+}
+/* 
+.toHome {
+  display: flex absolute;
+  align-items: center;
+} */

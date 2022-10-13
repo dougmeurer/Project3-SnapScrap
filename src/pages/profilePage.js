@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import CreateCollection from "../components/CreateCollection/createcollection";
 import HandleEdit from "../components/HandleEdit/handleedit";
 import MyCollection from "../components/MyCollection/mycollection";
+import Button from "react-bootstrap/Button";
 
 export function ProfilePage() {
   const [user, setUser] = useState({
@@ -21,6 +22,10 @@ export function ProfilePage() {
   const [reload, setReload] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(true);
   const [toggleCollection, setToggleCollection] = useState(true);
+  const [img, setImg] = useState("");
+  const [preview, setPreview] = useState();
+  // const [isOpen, setIsOpen] = useState(false);
+  // const toggle = () => setIsOpen(toggleEdit);
 
   useEffect(() => {
     async function fetchUser() {
@@ -37,20 +42,28 @@ export function ProfilePage() {
     <div>
       {!isLoading && (
         <>
-          <img src={user.profilePicture} alt="profile" width={100} />
+          <img
+            src={user.profilePicture}
+            alt="profile"
+            style={{
+              height: 150,
+              width: 145,
+              borderRadius: 50,
+            }}
+          />
           <div>
             <h1>
               Welcome, {user.name ? <>{user.name}!</> : <>{user.email}.</>}
             </h1>
             {user.userName ? <p>@{user.userName}</p> : <></>}
 
-            <button
+            <Button
               onClick={() => {
                 setToggleEdit(!toggleEdit);
               }}
             >
               Edit
-            </button>
+            </Button>
             {!toggleEdit && (
               <HandleEdit
                 user={user}
@@ -58,16 +71,20 @@ export function ProfilePage() {
                 reload={reload}
                 setToggleEdit={setToggleEdit}
                 toggleEdit={toggleEdit}
+                img={img}
+                setImg={setImg}
+                preview={preview}
+                setPreview={setPreview}
               />
             )}
 
-            <button
+            <Button
               onClick={() => {
                 setToggleCollection(!toggleCollection);
               }}
             >
               Create Collection
-            </button>
+            </Button>
             <Link to={"/users/followers"} key={uuidv4()}>
               Followers
             </Link>
@@ -80,6 +97,10 @@ export function ProfilePage() {
                 setToggleCollection={setToggleCollection}
                 reload={reload}
                 setReload={setReload}
+                img={img}
+                setImg={setImg}
+                preview={preview}
+                setPreview={setPreview}
               />
             )}
           </div>

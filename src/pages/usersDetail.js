@@ -70,7 +70,15 @@ function UsersDetailPage() {
       {!isLoading && (
         <>
           <div>
-            <img src={user.profilePicture} alt="" width={200} />
+            <img
+              src={user.profilePicture}
+              alt=""
+              style={{
+                height: 150,
+                width: 145,
+                borderRadius: 50,
+              }}
+            />
           </div>
           <div>
             {user.name ? <p>{user.name}</p> : <p>{user.email}</p>}

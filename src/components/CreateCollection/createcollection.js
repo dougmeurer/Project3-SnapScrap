@@ -1,17 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { api } from "../../api/api";
 import { AuthContext } from "../../contexts/authContext";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function CreateCollection({
   toggleCollection,
   setToggleCollection,
   reload,
   setReload,
+  img,
+  setImg,
+  preview,
+  setPreview,
 }) {
   const { loggedUser } = useContext(AuthContext);
   const user = loggedUser.user._id;
-  const [img, setImg] = useState("");
-  const [preview, setPreview] = useState();
 
   const [newCol, setNewCol] = useState({
     author: user,
@@ -76,24 +80,24 @@ function CreateCollection({
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>Collection Name:</label>
-        <input
+      <Form onSubmit={handleSubmit}>
+        <Form.Label>Collection Name:</Form.Label>
+        <Form.Control
           type="text"
           name="collectionName"
           required
           value={newCol.collectionName}
           onChange={handleChange}
         />
-        <label>About:</label>
-        <input
+        <Form.Label>About:</Form.Label>
+        <Form.Control
           type="text"
           name="collectionDetails"
           required
           value={newCol.collectionDetails}
           onChange={handleChange}
         />
-        <input type="file" onChange={handleImage} />
+        <Form.Control type="file" onChange={handleImage} />
         {img && <img src={preview} alt="" width={200} />}
         <button type="submit">Enter</button>
         <button
@@ -103,7 +107,7 @@ function CreateCollection({
         >
           Cancel
         </button>
-      </form>
+      </Form>
     </div>
   );
 }

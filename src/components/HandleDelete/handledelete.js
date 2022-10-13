@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 import { AuthContext } from "../../contexts/authContext";
+import Button from "react-bootstrap/Button";
 
 function HandleDelete() {
   const { loggedUser } = useContext(AuthContext);
@@ -18,9 +19,13 @@ function HandleDelete() {
 
   return (
     <>
-      <button onClick={handleDelete} type="button">
+      <Button
+        variant="btn btn-outline-danger btn-sm"
+        onClick={handleDelete}
+        type="button"
+      >
         Delete Account
-      </button>
+      </Button>
     </>
   );
 }
