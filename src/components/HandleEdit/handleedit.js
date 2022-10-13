@@ -96,8 +96,8 @@ function HandleEdit({
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPhoto">
           <Form.Control id="photo" type="file" onChange={handleImage} />
-          <br></br>
-          <Form.Group className="mb-3" controlId="formBasicPhoto">
+
+          <Form.Group className="my-2" controlId="formBasicPhoto">
             {img && (
               <img
                 src={preview}
@@ -111,7 +111,7 @@ function HandleEdit({
             )}
           </Form.Group>
         </Form.Group>
-        <Button type="submit" variant="btn btn-outline-success btn-sm">
+        <Button type="submit" variant="btn btn-outline-success btn-sm my-2">
           Save
         </Button>
         <HandleDelete />

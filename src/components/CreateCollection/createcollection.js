@@ -25,8 +25,6 @@ function CreateCollection({
     likes: [],
   });
 
-  console.log(reload);
-
   function handleChange(e) {
     setNewCol({ ...newCol, [e.target.name]: e.target.value });
   }
@@ -81,32 +79,54 @@ function CreateCollection({
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <Form.Label>Collection Name:</Form.Label>
-        <Form.Control
-          type="text"
-          name="collectionName"
-          required
-          value={newCol.collectionName}
-          onChange={handleChange}
-        />
-        <Form.Label>About:</Form.Label>
-        <Form.Control
-          type="text"
-          name="collectionDetails"
-          required
-          value={newCol.collectionDetails}
-          onChange={handleChange}
-        />
-        <Form.Control type="file" onChange={handleImage} />
-        {img && <img src={preview} alt="" width={200} />}
-        <button type="submit">Enter</button>
-        <button
-          onClick={() => {
-            setToggleCollection(!toggleCollection);
-          }}
-        >
-          Cancel
-        </button>
+        <Form.Group className="mb-3">
+          <Form.Label>Collection Name:</Form.Label>
+          <Form.Control
+            type="text"
+            name="collectionName"
+            required
+            value={newCol.collectionName}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>About:</Form.Label>
+          <Form.Control
+            type="text"
+            name="collectionDetails"
+            required
+            value={newCol.collectionDetails}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Control type="file" onChange={handleImage} />
+          <Form.Group className="my-1">
+            {img && (
+              <img
+                src={preview}
+                alt=""
+                className="my-2"
+                style={{
+                  height: 200,
+                  width: 190,
+                  borderRadius: 30,
+                }}
+              />
+            )}
+          </Form.Group>
+          <Button type="submit" variant="btn btn-outline-success btn-sm my-1">
+            Enter
+          </Button>
+          <Button
+            variant="btn btn-outline-danger btn-sm my-1"
+            onClick={() => {
+              setToggleCollection(!toggleCollection);
+            }}
+          >
+            Cancel
+          </Button>
+        </Form.Group>
       </Form>
     </div>
   );

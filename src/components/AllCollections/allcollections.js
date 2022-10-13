@@ -26,9 +26,6 @@ function AllCollections() {
     fetchColl();
   }, []);
 
-  console.log(coll);
-  console.log();
-
   return (
     <div className="collections">
       {!isLoading &&

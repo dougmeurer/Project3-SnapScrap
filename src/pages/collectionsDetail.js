@@ -5,6 +5,9 @@ import HandleEditCollection from "../components/HandleEditCollection/handleEditC
 import { AuthContext } from "../contexts/authContext";
 import unliked from "../../src/assets/unliked.png";
 import liked from "../../src/assets/liked.png";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function CollectionsDetail() {
   const [isLoading, setIsLoading] = useState(true);
@@ -143,7 +146,7 @@ function CollectionsDetail() {
   return (
     <div>
       {!isLoading && (
-        <div>
+        <div className="container">
           <h1>{coll.collectionName}</h1>
           {/* <button
             onClick={() => {
@@ -201,19 +204,21 @@ function CollectionsDetail() {
               return (
                 <div key={photo._id} className="btnDivShow">
                   <img src={photo.photoUrl} alt="Avatar" width={300} />
-                  <div>
-                    <img
-                      src={
-                        photo.likes.includes(loggedUser.user._id)
-                          ? liked
-                          : unliked
-                      }
-                      onClick={() => handlePhotoClick(photo)}
-                      width={25}
-                      alt=""
-                      className="btnHidden"
-                    />
-                  </div>
+                  {coll.author._id !== loggedUser.user._id && (
+                    <div>
+                      <img
+                        src={
+                          photo.likes.includes(loggedUser.user._id)
+                            ? liked
+                            : unliked
+                        }
+                        onClick={() => handlePhotoClick(photo)}
+                        width={25}
+                        alt=""
+                        className="btnHidden"
+                      />
+                    </div>
+                  )}
                   {coll.author._id === loggedUser.user._id && (
                     <button
                       className="btnHidden"

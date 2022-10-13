@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api/api";
-import { v4 as uuidv4 } from "uuid";
 import CreateCollection from "../components/CreateCollection/createcollection";
 import HandleEdit from "../components/HandleEdit/handleedit";
 import MyCollection from "../components/MyCollection/mycollection";
@@ -40,17 +39,18 @@ export function ProfilePage() {
   return (
     <div>
       {!isLoading && (
-        <>
+        <div className="profileFlex clearfix">
           <img
             src={user.profilePicture}
             alt="profile"
+            className="profilePicShadow"
             style={{
-              height: 150,
-              width: 145,
-              borderRadius: 50,
+              height: 200,
+              width: 190,
+              borderRadius: 100,
             }}
           />
-          <div>
+          <div className="profileFlex">
             <h1 className="profileNames">
               Welcome, {user.name ? <>{user.name}!</> : <>{user.email}.</>}
             </h1>
@@ -61,7 +61,7 @@ export function ProfilePage() {
             )}
 
             <Button
-              variant="btn btn-outline-dark btn-sm"
+              variant="btn btn-outline-dark btn-sm my-1"
               className="btnContent"
               onClick={() => {
                 setToggleEdit(!toggleEdit);
@@ -96,7 +96,7 @@ export function ProfilePage() {
               onClick={() => {
                 navigate("/users/followers");
               }}
-              variant="btn btn-outline-dark btn-sm"
+              variant="btn btn-outline-dark btn-sm my-1"
               className="btnContent"
             >
               Followers
@@ -124,7 +124,7 @@ export function ProfilePage() {
             )}
           </div>
           <MyCollection reload={reload} setReload={setReload} />
-        </>
+        </div>
       )}
     </div>
   );

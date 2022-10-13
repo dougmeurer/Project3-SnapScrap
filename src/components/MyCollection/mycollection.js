@@ -4,7 +4,7 @@ import { api } from "../../api/api";
 import styles from "./styles.module.css";
 import Card from "react-bootstrap/Card";
 
-function MyCollection({ reload, setReload }) {
+function MyCollection({ reload }) {
   const [isLoading, setIsLoading] = useState(true);
   const [coll, setColl] = useState();
   const navigate = useNavigate();
