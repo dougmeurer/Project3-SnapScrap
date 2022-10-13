@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { api } from "../api/api";
 import { v4 as uuidv4 } from "uuid";
 import CreateCollection from "../components/CreateCollection/createcollection";
@@ -24,8 +24,7 @@ export function ProfilePage() {
   const [toggleCollection, setToggleCollection] = useState(true);
   const [img, setImg] = useState("");
   const [preview, setPreview] = useState();
-  // const [isOpen, setIsOpen] = useState(false);
-  // const toggle = () => setIsOpen(toggleEdit);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchUser() {
@@ -52,17 +51,23 @@ export function ProfilePage() {
             }}
           />
           <div>
-            <h1>
+            <h1 className="profileNames">
               Welcome, {user.name ? <>{user.name}!</> : <>{user.email}.</>}
             </h1>
-            {user.userName ? <p>@{user.userName}</p> : <></>}
+            {user.userName ? (
+              <p className="userNames">@{user.userName}</p>
+            ) : (
+              <></>
+            )}
 
             <Button
+              variant="btn btn-outline-dark btn-sm"
+              className="btnContent"
               onClick={() => {
                 setToggleEdit(!toggleEdit);
               }}
             >
-              Edit
+              Edit Profile
             </Button>
             {!toggleEdit && (
               <HandleEdit
@@ -79,18 +84,32 @@ export function ProfilePage() {
             )}
 
             <Button
+              variant="btn btn-outline-dark btn-sm"
+              className="btnContent"
               onClick={() => {
                 setToggleCollection(!toggleCollection);
               }}
             >
               Create Collection
             </Button>
-            <Link to={"/users/followers"} key={uuidv4()}>
+            <Button
+              onClick={() => {
+                navigate("/users/followers");
+              }}
+              variant="btn btn-outline-dark btn-sm"
+              className="btnContent"
+            >
               Followers
-            </Link>
-            <Link to={"/users/following"} key={uuidv4()}>
+            </Button>
+            <Button
+              variant="btn btn-outline-dark btn-sm"
+              className="btnContent"
+              onClick={() => {
+                navigate("/users/following");
+              }}
+            >
               Following
-            </Link>
+            </Button>
             {!toggleCollection && (
               <CreateCollection
                 toggleCollection={toggleCollection}

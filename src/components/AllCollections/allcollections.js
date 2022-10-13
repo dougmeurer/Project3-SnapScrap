@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 import styles from "./styles.module.css";
-import { v4 as uuidv4 } from "uuid";
+import Card from "react-bootstrap/Card";
+import { AuthContext } from "../../contexts/authContext";
 
 function AllCollections() {
   const [isLoading, setIsLoading] = useState(true);
   const [coll, setColl] = useState();
   const navigate = useNavigate();
+  const { loggedUser } = useContext(AuthContext);
+  const userId = loggedUser.user._id;
 
   useEffect(() => {
     async function fetchColl() {
@@ -23,33 +26,47 @@ function AllCollections() {
     fetchColl();
   }, []);
 
+  console.log(coll);
+  console.log();
+
   return (
-    <div>
-      <h1>YOUR COLLECTIONS</h1>
+    <div className="collections">
       {!isLoading &&
         coll.map((oneColl) => {
+          if (userId === oneColl.author) {
+            return null;
+          }
           return (
-            <div
+            <Card
               className={styles.card}
-              key={uuidv4()}
+              key={oneColl._id}
               onClick={() => {
                 navigate(`/collection-detail/${oneColl._id}`);
               }}
             >
               <div className={styles.container}>
-                <h4>
-                  <b>{oneColl.collectionName}</b>
-                </h4>
-                <p>{oneColl.collectionDetails}</p>
+                <Card.Title className="colName">
+                  {oneColl.collectionName}
+                </Card.Title>
+
+                <Card.Text>{oneColl.collectionDetails}</Card.Text>
                 {oneColl.photos.map((photo) => {
                   return (
-                    <div key={uuidv4()}>
-                      <img src={photo.photoUrl} alt="Avatar" width={300} />
-                    </div>
+                    <Card.Img
+                      key={photo._id}
+                      src={photo.photoUrl}
+                      alt="Avatar"
+                      style={{
+                        padding: 5,
+                        borderRadius: 10,
+                        width: 150,
+                        height: 140,
+                      }}
+                    />
                   );
                 })}
               </div>
-            </div>
+            </Card>
           );
         })}
     </div>

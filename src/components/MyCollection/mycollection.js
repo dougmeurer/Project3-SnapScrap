@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../api/api";
 import styles from "./styles.module.css";
+import Card from "react-bootstrap/Card";
 
 function MyCollection({ reload, setReload }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,12 +24,11 @@ function MyCollection({ reload, setReload }) {
   }, [reload]);
 
   return (
-    <div>
-      <h1>YOUR COLLECTIONS</h1>
+    <div className="collections">
       {!isLoading &&
         coll.map((oneColl) => {
           return (
-            <div
+            <Card
               className={styles.card}
               key={oneColl._id}
               onClick={() => {
@@ -36,19 +36,28 @@ function MyCollection({ reload, setReload }) {
               }}
             >
               <div className={styles.container}>
-                <h4>
-                  <b>{oneColl.collectionName}</b>
-                </h4>
-                <p>{oneColl.collectionDetails}</p>
+                <Card.Title className="colName">
+                  {oneColl.collectionName}
+                </Card.Title>
+
+                <Card.Text>{oneColl.collectionDetails}</Card.Text>
                 {oneColl.photos.map((photo) => {
                   return (
-                    <div key={photo._id}>
-                      <img src={photo.photoUrl} alt="Avatar" width={300} />
-                    </div>
+                    <Card.Img
+                      key={photo._id}
+                      src={photo.photoUrl}
+                      alt="Avatar"
+                      style={{
+                        padding: 5,
+                        borderRadius: 10,
+                        width: 150,
+                        height: 140,
+                      }}
+                    />
                   );
                 })}
               </div>
-            </div>
+            </Card>
           );
         })}
     </div>

@@ -74,8 +74,41 @@
   font-size: larger;
   font-style: italic;
 }
-/* 
+
 .toHome {
   display: flex absolute;
   align-items: center;
-} */
+}
+
+.colName {
+  color: rgb(9, 9, 65);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 30px;
+}
+
+.btnContent {
+  color: rgb(9, 9, 65);
+  font-weight: 400;
+  font-style: italic;
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+}
+
+.btnContent:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgb(9, 9, 65);
+  color: white;
+}
+
+.profileNames {
+ color: rgb(9, 9, 65);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.userNames {
+   color: rgb(9, 9, 65);
+  font-weight: 400;
+  font-style: italic;
+
+}

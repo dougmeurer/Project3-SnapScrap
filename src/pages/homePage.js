@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import AllCollections from "../components/AllCollections/allcollections";
 import { AuthContext } from "../contexts/authContext";
 import LoginPage from "./loginPage";
 import SignUpPage from "./signUpPage";
@@ -17,6 +18,7 @@ function HomePage() {
           </div>
         </div>
       )}
+      <AllCollections />
     </div>
   );
 }
