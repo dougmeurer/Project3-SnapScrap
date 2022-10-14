@@ -26,7 +26,7 @@ function AllCollections() {
   }, []);
 
   return (
-    <div className="card2">
+    <div className="collections">
       {!isLoading &&
         coll.map((oneColl) => {
           if (userId === oneColl.author) {
@@ -34,37 +34,41 @@ function AllCollections() {
           }
           return (
             <Card
+              className="usersCard"
               key={oneColl._id}
               onClick={() => {
                 navigate(`/collection-detail/${oneColl._id}`);
               }}
             >
-              <Card.Header>
-                <Card.Title className="colName">
-                  {oneColl.collectionName}
-                </Card.Title>
-
-                <Card.Text className="subs">
-                  {oneColl.collectionDetails}
-                </Card.Text>
-              </Card.Header>
-              <Card.Body>
-                {oneColl.photos.map((photo) => {
-                  return (
-                    <Card.Img
-                      key={photo._id}
-                      src={photo.photoUrl}
-                      alt="Avatar"
-                      style={{
-                        padding: 5,
-                        borderRadius: 10,
-                        width: 150,
-                        height: "auto",
-                      }}
-                    />
-                  );
-                })}
-              </Card.Body>
+              <div className="usersContainer">
+                <Card.Header>
+                  <Card.Title className="colName">
+                    {oneColl.collectionName}
+                  </Card.Title>
+                  <Card.Text className="subs">
+                    {oneColl.collectionDetails}
+                  </Card.Text>
+                </Card.Header>
+                <Card.Body className="d-flex justify-content-around flex-wrap">
+                  {oneColl.photos.map((photo) => {
+                    return (
+                      <Card.Img
+                        key={photo._id}
+                        src={photo.photoUrl}
+                        className="d-flex"
+                        alt="Avatar"
+                        style={{
+                          padding: 5,
+                          borderRadius: 10,
+                          width: 230,
+                          height: 215,
+                          justifyContent: "center",
+                        }}
+                      />
+                    );
+                  })}
+                </Card.Body>
+              </div>
             </Card>
           );
         })}

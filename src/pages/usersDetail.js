@@ -118,43 +118,51 @@ function UsersDetailPage() {
               Following
             </Button>
           </div>
-          <div className="card2">
-            {user.collections.map((coll) => {
-              return (
-                <Card
-                  key={uuidv4()}
-                  onClick={() => {
-                    navigate(`/collection-detail/${coll._id}`);
-                  }}
-                >
-                  <Card.Header>
-                    <Card.Title className="colName">
-                      Collection Name: {coll.collectionName}
-                    </Card.Title>
-                    <Card.Text className="subs">
-                      Collection Detail: {coll.collectionDetails}
-                    </Card.Text>
-                  </Card.Header>
-                  <Card.Body>
-                    {coll.photos.map((photo) => {
-                      return (
-                        <Image
-                          key={uuidv4()}
-                          src={photo.photoUrl}
-                          alt="randomImages"
-                          style={{
-                            padding: 5,
-                            borderRadius: 10,
-                            width: 150,
-                            height: "auto",
-                          }}
-                        />
-                      );
-                    })}
-                  </Card.Body>
-                </Card>
-              );
-            })}
+          <div className="usersCollections">
+            <Card>
+              {user.collections.map((coll) => {
+                return (
+                  <Card
+                    key={uuidv4()}
+                    className="usersCard"
+                    onClick={() => {
+                      navigate(`/collection-detail/${coll._id}`);
+                    }}
+                  >
+                    <div className="usersContainer">
+                      <Card.Header>
+                        <Card.Title className="colName">
+                          {coll.collectionName}
+                        </Card.Title>
+                        <Card.Text className="subs">
+                          {coll.collectionDetails}
+                        </Card.Text>
+                      </Card.Header>
+                      <Card.Body className="d-flex justify-content-around flex-wrap">
+                        {coll.photos.map((photo) => {
+                          return (
+                            <Image
+                              key={uuidv4()}
+                              src={photo.photoUrl}
+                              alt="randomImages"
+                              className="d-flex"
+                              fluid
+                              style={{
+                                padding: 5,
+                                borderRadius: 10,
+                                width: 230,
+                                height: 215,
+                                justifyContent: "center",
+                              }}
+                            />
+                          );
+                        })}
+                      </Card.Body>
+                    </div>
+                  </Card>
+                );
+              })}
+            </Card>
           </div>
         </div>
       )}

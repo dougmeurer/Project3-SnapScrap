@@ -5,9 +5,7 @@ import { AuthContext } from "../contexts/authContext";
 import toast from "react-hot-toast";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import { Label } from "reactstrap";
 
 function LoginPage() {
   const [form, setForm] = useState({
@@ -39,7 +37,7 @@ function LoginPage() {
   }
 
   return (
-    <Container fluid>
+    <div>
       <Button
         variant="btn btn-outline-light btn-lg"
         className="signBtnContent"
@@ -49,13 +47,12 @@ function LoginPage() {
         Login
       </Button>
       <Modal isOpen={isOpen} toggle={toggle}>
-        <ModalHeader>Sign-up here</ModalHeader>
+        <ModalHeader className="loginLabel">Login</ModalHeader>
 
         <ModalBody>
           <Form onSubmit={handleSubmit}>
-            <Label className="loginLabel">Login</Label>
-            <Form.Group className="mb-3" >
-              <Form.Label>Email:</Form.Label>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="email">Email:</Form.Label>
               <Form.Control
                 type="email"
                 name="email"
@@ -64,34 +61,44 @@ function LoginPage() {
               />
             </Form.Group>
             {!showPassword ? (
-              <Form.Group className="mb-3" >
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={form.password}
-                  onChange={handleChange}
-                />
-              </Form.Group>
+              <>
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="password">Password:</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </>
             ) : (
-              <Form.Group className="mb-3" >
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="password"
-                  value={form.password}
-                  onChange={handleChange}
-                />
-              </Form.Group>
+              <>
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="password">Password:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </>
             )}
-            <Form.Group className="mb-3" >
-              <Form.Control
+            <Form.Group className="mb-3">
+              <Form.Check
                 type="checkbox"
                 label="Check me out"
                 onChange={() => setShowPassword(!showPassword)}
               />
-              <Button type="submit">Enter</Button>
             </Form.Group>
+            <Button
+              className="navBtnContent"
+              type="submit"
+              variant="btn btn-outline-dark btn-md"
+            >
+              Enter
+            </Button>
           </Form>
         </ModalBody>
         <ModalFooter>
@@ -100,7 +107,7 @@ function LoginPage() {
           </Button>
         </ModalFooter>
       </Modal>
-    </Container>
+    </div>
   );
 }
 

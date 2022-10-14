@@ -42,7 +42,6 @@ function MyCollection({ reload }) {
                     <Card.Title className="colName">
                       {oneColl.collectionName}
                     </Card.Title>
-
                     <Card.Text className="subs">
                       {oneColl.collectionDetails}
                     </Card.Text>

@@ -90,32 +90,6 @@ function CollectionsDetail() {
     }
   }
 
-  // async function handleAddlikeCollection(collId) {
-  //   try {
-  //     await api.put(`/collections/add-like/${collId}`);
-  //     setReload(!reload);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // function handleCollectionClick(coll) {
-  //   if (coll.likes.includes(loggedUser.user._id)) {
-  //     handleRemoveLikeCollection(coll._id);
-  //     return;
-  //   }
-  //   handleAddlikeCollection(coll._id);
-  // }
-
-  // async function handleRemoveLikeCollection(collId) {
-  //   try {
-  //     await api.put(`/collections/remove-collection/${collId}`);
-  //     setReload(!reload);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   async function handleAddLikePhoto(photoId) {
     try {
       await api.put(`/photos/add-like/${photoId}`);
@@ -156,12 +130,6 @@ function CollectionsDetail() {
               <Card.Text>{coll.collectionDetails}</Card.Text>
               <p>{coll.photos.length} photos total</p>
             </Card>
-
-            {/* <button
-            onClick={() => {
-              handleCollectionClick(coll);
-            }}
-          ></button> */}
             <Card.Body>
               <div className="adjustButton">
                 {loggedUser.user._id !== coll.author._id ? (

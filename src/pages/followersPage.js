@@ -30,36 +30,43 @@ export function FollowersPage() {
 
   return (
     <div>
-      {!isLoading && (
-        <>
-          {user.followers.map((follower) => {
-            console.log("seguidor", follower);
-            return (
-              <div key={uuidv4()}>
-                <Link to={`/users/${follower._id}`}>
-                  <img src={follower.profilePicture} alt="profPic" width={50} />
-                </Link>
-                {follower.followers ? (
-                  <div>
-                    <span>Followed by {follower.followers.length} people</span>
-                  </div>
-                ) : null}
-                {follower.following ? (
-                  <div>
-                    <span>Following {follower.following.length} people</span>
-                  </div>
-                ) : null}
+      {!isLoading &&
+        user.followers.map((follower) => {
+          return (
+            <div key={uuidv4()} className="profileFlex clearfix ">
+              <Link to={`/users/${follower._id}`}>
+                <img
+                  src={follower.profilePicture}
+                  alt="profPic"
+                  style={{
+                    height: 200,
+                    width: 190,
+                    borderRadius: 100,
+                  }}
+                />
+              </Link>
+              <div className="profileFlex mx-1 my-1">
                 {follower.name ? (
-                  <p>Name: {follower.name}</p>
+                  <h4 className="userNames">{follower.name}</h4>
                 ) : (
-                  <p>Email: {follower.email}</p>
+                  <h4 className="userNames">{follower.email}</h4>
                 )}
-                {follower.userName ? <p>@{follower.userName}</p> : null}
+                {follower.userName ? (
+                  <p className="userNames">@{follower.userName}</p>
+                ) : null}
+                <p className="userNames">
+                  {follower.collections.length} Collections
+                </p>
+                <p className="userNames">
+                  {follower.followers.length} Followers{" "}
+                </p>
+                <p className="userNames">
+                  Following {follower.following.length}
+                </p>
               </div>
-            );
-          })}
-        </>
-      )}
+            </div>
+          );
+        })}
     </div>
   );
 }

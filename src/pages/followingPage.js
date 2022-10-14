@@ -31,40 +31,43 @@ export function FollowingPage() {
 
   return (
     <div>
-      {!isLoading && (
-        <>
-          {user.following.map((following) => {
-            console.log("????", following);
-            return (
-              <div key={uuidv4()}>
-                <Link to={`/users/${following._id}`}>
-                  <img
-                    src={following.profilePicture}
-                    alt="profPic"
-                    width={50}
-                  />
-                </Link>
-                {following.followers ? (
-                  <div>
-                    <span>Followed by {following.followers.length} people</span>
-                  </div>
-                ) : null}
-                {following.following ? (
-                  <div>
-                    <span>Following {following.following.length} people</span>
-                  </div>
-                ) : null}
+      {!isLoading &&
+        user.following.map((following) => {
+          return (
+            <div key={uuidv4()} className="profileFlex clearfix ">
+              <Link to={`/users/${following._id}`}>
+                <img
+                  src={following.profilePicture}
+                  alt="profPic"
+                  style={{
+                    height: 200,
+                    width: 190,
+                    borderRadius: 100,
+                  }}
+                />
+              </Link>
+              <div className="profileFlex mx-1 my-1">
                 {following.name ? (
-                  <p>Name: {following.name}</p>
+                  <h4 className="userNames">{following.name}</h4>
                 ) : (
-                  <p>Email: {following.email}</p>
+                  <h4 className="userNames">{following.email}</h4>
                 )}
-                {following.userName ? <p>@{following.userName}</p> : null}
+                {following.userName ? (
+                  <p className="userNames">@{following.userName}</p>
+                ) : null}
+                <p className="userNames">
+                  {following.collections.length} Collections
+                </p>
+                <p className="userNames">
+                  {following.followers.length} Followers{" "}
+                </p>
+                <p className="userNames">
+                  Following {following.following.length}
+                </p>
               </div>
-            );
-          })}
-        </>
-      )}
+            </div>
+          );
+        })}
     </div>
   );
 }

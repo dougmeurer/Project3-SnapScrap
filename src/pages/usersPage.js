@@ -27,33 +27,34 @@ function UsersPage() {
             return null;
           }
           return (
-            <>
-              <div key={user._id} className="profileFlex clearfix ">
-                <Link to={`/users/${user._id}`}>
-                  <img
-                    src={user.profilePicture}
-                    alt=""
-                    style={{
-                      height: 200,
-                      width: 190,
-                      borderRadius: 20,
-                    }}
-                  />
-                </Link>
-                <div className="profileFlex mx-1 my-1">
-                  {user.userName ? (
-                    <h4 className="userNames">{user.userName}</h4>
-                  ) : (
-                    <h4 className="userNames">{user.email}</h4>
-                  )}
-                  <p className="userNames">
-                    Collections {user.collections.length}
-                  </p>
-                  <p className="userNames">Followers {user.followers.length}</p>
-                  <p className="userNames">Following {user.following.length}</p>
-                </div>
+            <div key={user._id} className="profileFlex clearfix ">
+              <Link to={`/users/${user._id}`}>
+                <img
+                  src={user.profilePicture}
+                  alt=""
+                  style={{
+                    height: 200,
+                    width: 190,
+                    borderRadius: 100,
+                  }}
+                />
+              </Link>
+              <div className="profileFlex mx-1 my-1">
+                {user.name ? (
+                  <h4 className="userNames">{user.name}</h4>
+                ) : (
+                  <h4 className="userNames">{user.email}</h4>
+                )}
+                {user.userName ? (
+                  <p className="userNames">@{user.userName}</p>
+                ) : null}
+                <p className="userNames">
+                  Collections {user.collections.length}
+                </p>
+                <p className="userNames">{user.followers.length} Followers </p>
+                <p className="userNames">{user.following.length} Following </p>
               </div>
-            </>
+            </div>
           );
         })}
     </div>

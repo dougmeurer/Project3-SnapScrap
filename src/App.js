@@ -10,6 +10,7 @@ import CollectionsDetail from "./pages/collectionsDetail";
 import UsersPage from "./pages/usersPage";
 import FollowersPage from "./pages/followersPage";
 import FollowingPage from "./pages/followingPage";
+import LoginPage from "./pages/loginPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <SnapNavbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/users/:userId" element={<UsersDetailPage />} />

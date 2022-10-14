@@ -43,14 +43,13 @@ function SignUpPage() {
         Join Us!
       </Button>
       <Modal isOpen={isOpen} toggle={toggle}>
-        <ModalHeader>Sign-up here</ModalHeader>
+        <ModalHeader className="loginLabel">Sign-up here</ModalHeader>
 
         <ModalBody>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicUserName">
+            <Form.Group className="mb-3">
               <Form.Label htmlFor="userName">Username: </Form.Label>
               <Form.Control
-                id="userName"
                 type="userName"
                 name="userName"
                 placeholder="NightRider"
@@ -59,10 +58,9 @@ function SignUpPage() {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3">
               <Form.Label htmlFor="email">Email: </Form.Label>
               <Form.Control
-                id="email"
                 type="email"
                 name="email"
                 placeholder="Enter email"
@@ -76,10 +74,9 @@ function SignUpPage() {
             </Form.Group>
             {!showPassword ? (
               <>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3">
                   <Form.Label htmlFor="password">Password: </Form.Label>
                   <Form.Control
-                    id="password"
                     type="password"
                     name="password"
                     placeholder="Password"
@@ -90,10 +87,9 @@ function SignUpPage() {
               </>
             ) : (
               <>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3">
                   <Form.Label htmlFor="password">Password: </Form.Label>
                   <Form.Control
-                    id="password"
                     type="text"
                     name="password"
                     value={signUp.password}
@@ -102,7 +98,7 @@ function SignUpPage() {
                 </Form.Group>
               </>
             )}
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Group className="mb-3">
               <Form.Check
                 type="checkbox"
                 label="Check me out"
@@ -111,7 +107,7 @@ function SignUpPage() {
             </Form.Group>
             <Button
               type="submit"
-              variant="btn btn-outline-light"
+              variant="btn btn-outline-dark btn-md"
               className="navBtnContent"
             >
               Submit

@@ -1,20 +1,20 @@
-.card {
+.usersCard {
   transition: 0.3s;
   border-radius: 5px;
   margin: 1vw 5vw 1vw 5vw;
 }
 
-.container {
+.usersContainer {
   margin: 10px;
   padding: 2px 16px;
   align-self: flex-start;
 }
 
-.cardGap {
+.usersCardGap {
   gap: 10px;
 }
 
-.collections {
+.usersCollections {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

@@ -82,7 +82,7 @@ export function ProfilePage() {
             )}
 
             <Button
-              variant="btn btn-outline-dark btn-sm"
+              variant="btn btn-outline-dark btn-sm my-1"
               className="btnContent"
               onClick={() => {
                 setToggleCollection(!toggleCollection);
@@ -100,7 +100,7 @@ export function ProfilePage() {
               Followers
             </Button>
             <Button
-              variant="btn btn-outline-dark btn-sm mb-1"
+              variant="btn btn-outline-dark btn-sm my-1"
               className="btnContent"
               onClick={() => {
                 navigate("/users/following");
