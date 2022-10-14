@@ -6,13 +6,17 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
 
 function SnapNavbar() {
   const navigate = useNavigate();
+  const { setLoggedUser } = useContext(AuthContext);
 
   function handleLogOut(e) {
     localStorage.removeItem("loggedUser");
-    navigate('/')
+    setLoggedUser(null);
+    navigate("/");
   }
 
   return (
@@ -64,6 +68,16 @@ function SnapNavbar() {
                 }}
               >
                 All Users
+              </Button>
+              <Button
+                variant="light"
+                className="navBtnContent"
+                onClick={() => {
+                  navigate("/allCollectionsPage");
+                }}
+              >
+                {" "}
+                Collections
               </Button>
               <Button
                 variant="light"

@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
-function LoginPage() {
+function LoginPage({ isOpenLoggin, toggleLoggin }) {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -16,8 +16,6 @@ function LoginPage() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const { setLoggedUser } = useContext(AuthContext);
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -41,12 +39,12 @@ function LoginPage() {
       <Button
         variant="btn btn-outline-light btn-lg"
         className="signBtnContent"
-        onClick={toggle}
+        onClick={toggleLoggin}
         type="button"
       >
         Login
       </Button>
-      <Modal isOpen={isOpen} toggle={toggle}>
+      <Modal isOpen={isOpenLoggin} toggle={toggleLoggin}>
         <ModalHeader className="loginLabel">Login</ModalHeader>
 
         <ModalBody>
@@ -102,7 +100,7 @@ function LoginPage() {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button variant="btn btn-outline-danger" onClick={toggle}>
+          <Button variant="btn btn-outline-danger" onClick={toggleLoggin}>
             Cancel
           </Button>
         </ModalFooter>

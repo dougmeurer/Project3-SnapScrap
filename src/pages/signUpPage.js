@@ -1,22 +1,20 @@
 import { useState } from "react";
 import { api } from "../api/api";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import toast from "react-hot-toast";
 
-function SignUpPage() {
+function SignUpPage({ isOpen, toggle, toggleLoggin }) {
   const [signUp, setSignUp] = useState({
     email: "",
     password: "",
     userName: "",
   });
 
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
   const [showPassword, setShowPassword] = useState(false);
-
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function handleChange(e) {
     setSignUp({ ...signUp, [e.target.name]: e.target.value });
@@ -26,7 +24,8 @@ function SignUpPage() {
     e.preventDefault();
     try {
       await api.post("/users/sign-up", { ...signUp });
-      navigate("/login");
+      toast.success("Please verify & confirm your e-mail");
+      toggleLoggin();
     } catch (error) {
       console.log(error);
     }
