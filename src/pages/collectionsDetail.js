@@ -117,7 +117,6 @@ function CollectionsDetail() {
     }
   }
 
-  console.log("aqui", coll);
   return (
     <Card>
       {!isLoading && (

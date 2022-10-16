@@ -14,10 +14,8 @@ export function FollowersPage() {
       let response = null;
       if (userId) {
         response = await api.get(`/users/user/${userId}`);
-        console.log("no 1", response.data);
       } else {
         response = await api.get("/users/profile");
-        console.log("no 2", response.data);
       }
       setUser(response.data);
       setIsLoading(false);
@@ -26,7 +24,6 @@ export function FollowersPage() {
     fetchUser();
   }, []);
 
-  console.log("aqui", user.followers);
 
   return (
     <div>

@@ -15,10 +15,8 @@ export function FollowingPage() {
       let response = null;
       if (userId) {
         response = await api.get(`/users/user/${userId}`);
-        console.log("1", response.data);
       } else {
         response = await api.get("/users/profile");
-        console.log("2", response.data);
       }
       setUser(response.data);
       setIsLoading(false);
@@ -27,7 +25,6 @@ export function FollowingPage() {
     fetchUser();
   }, []);
 
-  console.log("quem?", user);
 
   return (
     <div>

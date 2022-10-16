@@ -72,7 +72,6 @@ function HandleEdit({
     }
   }
 
-  console.log(editUser);
   return (
     <div>
       <Form onSubmit={handleSubmit}>
