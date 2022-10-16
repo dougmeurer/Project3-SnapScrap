@@ -11,6 +11,7 @@ import UsersPage from "./pages/usersPage";
 import FollowersPage from "./pages/followersPage";
 import FollowingPage from "./pages/followingPage";
 import AllCollections from "./components/AllCollections/allcollections";
+import ProtectedRoutes from "./components/ProtectedRoutes/protectedRoute";
 
 function App() {
   return (
@@ -20,13 +21,25 @@ function App() {
         <SnapNavbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/allCollectionsPage" element={<AllCollections />} />
-          <Route path="/users" element={<UsersPage />} />
-          <Route path="/users/:userId" element={<UsersDetailPage />} />
+          <Route
+            path="/profile"
+            element={<ProtectedRoutes Component={ProfilePage} />}
+          />
+          <Route
+            path="/allCollectionsPage"
+            element={<ProtectedRoutes Component={AllCollections} />}
+          />
+          <Route
+            path="/users"
+            element={<ProtectedRoutes Componenet={UsersPage} />}
+          />
+          <Route
+            path="/users/:userId"
+            element={<ProtectedRoutes Component={UsersDetailPage} />}
+          />
           <Route
             path="/collection-detail/:collectionId"
-            element={<CollectionsDetail />}
+            element={<ProtectedRoutes Component={CollectionsDetail} />}
           />
           <Route path="/users/followers" element={<FollowersPage />} />
           <Route path="/users/followers/:userId" element={<FollowersPage />} />
