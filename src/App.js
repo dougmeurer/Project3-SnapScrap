@@ -7,11 +7,11 @@ import "./App.css";
 import SnapNavbar from "./components/SnapNavbar/navbar";
 import UsersDetailPage from "./pages/usersDetail";
 import CollectionsDetail from "./pages/collectionsDetail";
-import UsersPage from "./pages/usersPage";
 import FollowersPage from "./pages/followersPage";
 import FollowingPage from "./pages/followingPage";
 import AllCollections from "./components/AllCollections/allcollections";
 import ProtectedRoutes from "./components/ProtectedRoutes/protectedRoute";
+import UsersPage from "./pages/usersPage";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
           />
           <Route
             path="/users"
-            element={<ProtectedRoutes Componenet={UsersPage} />}
+            element={<ProtectedRoutes Component={UsersPage} />}
           />
           <Route
             path="/users/:userId"
